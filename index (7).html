@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <script type="module" src="/@vite/client"></script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MICHAL MICEK / VISIBLE7 — Budoucnost marketingu je tady.</title>
+  
+  <!-- Semantic and SEO Tags for AI Crawlers -->
+  <meta name="description" content="Pomáháme lidem a firmám dostat se do odpovědí ChatGPT, Claude, Perplexity a Google SGE. Tvoříme architekturu autority pro AI.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Michal Micek / Visible7">
+  
+  <!-- Schema.org Integration for LLMs -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Budoucnost marketingu je tady. Buď vidět pro lidi i AI.",
+    "description": "Technická architektura autority pro lidi a firmy v éře ChatGPT, Claude a Perplexity.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "VISIBLE7",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://visible7.cz/logo.png"
+      }
+    }
+  }
+  </script>
+
+  <style>
+    /* CSS RESET & MODERN PROPERTIES */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #F8F8F6;
+      --text-main: #111111;
+      --text-muted: #4b5563;
+      --accent-color: #000000;
+      --accent-hover: #1f2937;
+      --border-color: #E5E7EB;
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    html {
+      font-family: var(--font-family);
+      color: var(--text-main);
+      background-color: var(--bg-primary);
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    /* TYPOGRAPHY */
+    h1 {
+      font-size: 44px !important;
+      font-weight: 600 !important;
+      line-height: 1.25 !important;
+      letter-spacing: -0.025em;
+      color: var(--text-main);
+    }
+
+    h2 {
+      font-size: 30px !important;
+      font-weight: 600 !important;
+      line-height: 1.3 !important;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+    }
+
+    h3, h4 {
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      color: var(--text-main);
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 16px !important;
+      line-height: 1.75 !important;
+    }
+
+    /* UTILITY CLASSES */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .section-padding {
+      padding: 100px 0 !important;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      background-color: #000000;
+      color: #ffffff;
+      font-size: 0.725rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.25rem;
+      border-radius: 4px;
+    }
+
+    .badge-outline {
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      border: 1.5px solid var(--text-main);
+      color: var(--text-main);
+      font-size: 0.725rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.25rem;
+      border-radius: 4px;
+    }
+
+    /* HEADER */
+    header {
+      padding: 1.25rem 0;
+      background-color: var(--bg-primary);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+    }
+
+    .header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+
+    .logo-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .logo {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+
+    .company-tagline {
+      font-size: 0.775rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 0.025em;
+    }
+
+    .header-contact {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-person {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .linkedin-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 700;
+      border: 1.5px solid var(--border-color);
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      background-color: var(--bg-secondary);
+      transition: all 0.15s ease;
+    }
+
+    .linkedin-link:hover {
+      background-color: var(--text-main);
+      color: #ffffff;
+      border-color: var(--text-main);
+    }
+
+    .download-html-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1.5px solid #1a73e8;
+      padding: 0.45rem 1rem;
+      border-radius: 8px;
+      background-color: #1a73e8;
+      cursor: pointer;
+      font-family: var(--font-family);
+      font-size: 0.85rem;
+      transition: all 0.15s ease;
+      box-shadow: 0 2px 8px rgba(26, 115, 232, 0.15);
+    }
+
+    .download-html-btn:hover {
+      background-color: #1557b0;
+      border-color: #1557b0;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(26, 115, 232, 0.25);
+    }
+
+    .download-html-btn:active {
+      transform: translateY(1px);
+    }
+
+    /* HERO SECTION */
+    .hero-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 820px;
+      margin: 0 auto;
+      padding-top: 5.5rem;
+      padding-bottom: 5rem;
+    }
+
+    .hero-trust-bar {
+      border: 2px solid var(--text-main);
+      background-color: var(--bg-secondary);
+      padding: 2.75rem;
+      margin-top: 4.5rem;
+      border-radius: 4px;
+      box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 2.5rem;
+      align-items: center;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .trust-citation {
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .trust-stat {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border-right: 2px solid var(--border-color);
+      padding-right: 2.5rem;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero-title-main {
+      font-size: 62px !important;
+      font-weight: 900 !important;
+      line-height: 1.25 !important;
+      letter-spacing: -0.04em !important;
+      color: var(--text-main);
+      margin-top: 1rem;
+      margin-bottom: 1.25rem !important;
+    }
+
+    .hero-subtitle-sub {
+      font-size: 25px !important;
+      font-weight: 600 !important;
+      line-height: 1.4 !important;
+      letter-spacing: -0.025em !important;
+      color: var(--text-main);
+      margin-bottom: 2.25rem !important;
+      max-width: 820px;
+      font-family: var(--font-family);
+    }
+
+    .hero-content p {
+      font-size: 1.125rem !important;
+      margin-bottom: 2.25rem;
+      color: var(--text-muted);
+    }
+
+    /* FORM & INPUTS */
+    .cta-card {
+      background-color: #ffffff !important;
+      border: none !important;
+      padding: 32px !important;
+      border-radius: 12px !important;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    .cta-card h3 {
+      font-size: 1.35rem !important;
+      font-weight: 600 !important;
+      margin-bottom: 1.5rem !important;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.75rem !important;
+      font-weight: 600 !important;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .form-control {
+      width: 100%;
+      height: 48px !important;
+      padding: 0 16px !important;
+      font-size: 0.95rem;
+      font-family: var(--font-family);
+      border: 1.5px solid #D0D0D0 !important;
+      background-color: #ffffff;
+      color: var(--text-main);
+      border-radius: 8px !important;
+      transition: all 0.15s ease-in-out;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--text-main) !important;
+      box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    /* ORDER BUMP STYLE */
+    .order-bump {
+      background-color: #F8F8F6;
+      border: 1.5px dashed var(--border-color);
+      padding: 1.25rem;
+      margin: 1.5rem 0;
+      border-radius: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .order-bump input[type="checkbox"] {
+      margin-top: 0.2rem;
+      width: 1.2rem;
+      height: 1.2rem;
+      accent-color: #000000;
+      cursor: pointer;
+    }
+
+    .order-bump-label {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      cursor: pointer;
+      color: #374151;
+    }
+
+    .order-bump-tag {
+      font-weight: 800;
+      color: #b91c1c;
+      text-transform: uppercase;
+      font-size: 0.725rem;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    /* PRIMARY CTA BUTTON (SOLID, SOLID COLOR) */
+    .btn-submit, .btn-primary-cta {
+      display: inline-block;
+      width: 100%;
+      padding: 16px 32px !important;
+      background-color: var(--accent-color) !important;
+      color: #ffffff !important;
+      font-family: var(--font-family);
+      font-size: 1rem !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.05em !important;
+      border: none !important;
+      cursor: pointer;
+      border-radius: 8px !important;
+      transition: all 0.2s ease !important;
+      text-align: center;
+      text-decoration: none !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    .btn-submit:hover, .btn-primary-cta:hover {
+      background-color: #1f2937 !important;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12) !important;
+    }
+
+    .btn-submit:active, .btn-primary-cta:active {
+      transform: translateY(1px);
+    }
+
+    /* SECONDARY CTA BUTTON (OUTLINE STYLE) */
+    .btn-secondary-outline {
+      display: inline-block;
+      padding: 16px 32px !important;
+      background-color: transparent !important;
+      color: var(--text-main) !important;
+      font-family: var(--font-family);
+      font-size: 1rem !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.05em !important;
+      border: 2px solid var(--text-main) !important;
+      cursor: pointer;
+      border-radius: 8px !important;
+      transition: all 0.2s ease !important;
+      text-align: center;
+      text-decoration: none !important;
+    }
+
+    .btn-secondary-outline:hover {
+      background-color: var(--bg-secondary) !important;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary-outline:active {
+      transform: translateY(1px);
+    }
+
+    .form-disclaimer {
+      font-size: 0.8rem;
+      text-align: center;
+      margin-top: 1rem;
+      color: var(--text-muted);
+    }
+
+    /* HARD TRUTH SECTION */
+    .section-title-wrap {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 5rem auto;
+    }
+
+    .section-title {
+      margin-bottom: 1.25rem;
+    }
+
+    .old-vs-new-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .truth-card {
+      padding: 40px !important;
+      border-radius: 12px !important;
+      border: none !important;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.02) !important;
+    }
+
+    .truth-card.old-way {
+      background-color: #F5F5F5 !important;
+    }
+
+    .truth-card.new-way {
+      background-color: #000000 !important;
+      color: #ffffff !important;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.15) !important;
+    }
+
+    .truth-card.new-way .card-heading {
+      color: #ffffff !important;
+    }
+
+    .truth-card.new-way .truth-list li {
+      color: #e2e8f0 !important;
+    }
+
+    .card-heading {
+      font-size: 1.5rem !important;
+      font-weight: 600 !important;
+      margin-bottom: 2rem !important;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .card-heading-icon {
+      font-size: 32px !important;
+      line-height: 1;
+      display: inline-block;
+    }
+
+    .truth-list {
+      list-style-type: none;
+    }
+
+    .truth-list li {
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      position: relative;
+      padding-left: 2.25rem;
+    }
+
+    .truth-list li::before {
+      position: absolute;
+      left: 0;
+      top: 0.15rem;
+      font-size: 1.25rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .old-way .truth-list li::before {
+      content: "✕" !important;
+      color: #ef4444 !important;
+    }
+
+    .new-way .truth-list li::before {
+      content: "✓" !important;
+      color: #22c55e !important;
+    }
+
+    /* HOW IT WORKS SECTION (TIMELINE STEPS 1-5) */
+    .timeline-container {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2rem;
+      position: relative;
+      margin-top: 4.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .timeline-step {
+      background-color: #ffffff;
+      border: 1.5px solid #E5E7EB;
+      border-radius: 12px;
+      padding: 2.25rem 2rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.01);
+    }
+
+    .timeline-step:hover {
+      border-color: var(--text-main);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      transform: translateY(-2px);
+    }
+
+    .timeline-step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .timeline-number {
+      font-size: 48px !important;
+      font-weight: 800;
+      color: #E5E7EB;
+      line-height: 1;
+      font-family: var(--font-family);
+    }
+
+    .timeline-step:hover .timeline-number {
+      color: var(--text-main);
+      opacity: 0.15;
+    }
+
+    .timeline-icon {
+      font-size: 40px !important;
+      width: 40px;
+      height: 40px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: grayscale(1);
+    }
+
+    .timeline-step:hover .timeline-icon {
+      filter: none;
+    }
+
+    .timeline-step-title {
+      font-size: 1.15rem !important;
+      font-weight: 600 !important;
+      line-height: 1.3 !important;
+      margin-bottom: 0.75rem !important;
+      color: var(--text-main);
+    }
+
+    .timeline-step-desc {
+      font-size: 0.925rem !important;
+      line-height: 1.625 !important;
+      color: var(--text-muted);
+    }
+
+    .tech-note {
+      text-align: center;
+      max-width: 700px;
+      margin: 4rem auto 0 auto;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--text-muted);
+      border-left: 3px solid var(--accent-color);
+      padding-left: 1.5rem;
+    }
+
+    /* THE TRANSFORMATION SECTION */
+    .equations-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .equation-row {
+      background-color: var(--bg-primary);
+      border: 1.5px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2.25rem;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .equation-label {
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-align: center;
+      border-radius: 4px;
+    }
+
+    .label-vstup {
+      background-color: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fee2e2;
+    }
+
+    .label-katalyzator {
+      background-color: #eff6ff;
+      color: #1e40af;
+      border: 1px solid #dbeafe;
+    }
+
+    .label-vystup {
+      background-color: #f0fdf4;
+      color: #166534;
+      border: 1px solid #dcfce7;
+    }
+
+    .equation-steps {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .eq-step {
+      background-color: var(--bg-secondary);
+      border: 1.5px solid var(--border-color);
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.925rem;
+      font-weight: 500;
+    }
+
+    .eq-step-accent {
+      background-color: var(--accent-color);
+      color: #ffffff;
+      border-color: var(--accent-color);
+    }
+
+    .eq-arrow {
+      color: var(--text-muted);
+      font-weight: bold;
+    }
+
+    /* HOW WE COOPERATE SECTIONSTYLE */
+    .process-timeline {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3.5rem 2.5rem;
+      margin-top: 4.5rem;
+    }
+
+    .process-step {
+      background-color: var(--bg-primary);
+      border: 1.5px solid var(--border-color);
+      padding: 2.5rem 2.25rem;
+      border-radius: 12px;
+      position: relative;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.01);
+    }
+
+    .process-step:hover {
+      border-color: var(--text-main);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    }
+
+    .process-step-num {
+      position: absolute;
+      top: -1.25rem;
+      left: 2rem;
+      background-color: var(--accent-color);
+      color: #ffffff;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      border: 2px solid var(--bg-primary);
+    }
+
+    .process-step h3 {
+      font-size: 1.25rem !important;
+      font-weight: 600 !important;
+      margin-top: 0.5rem;
+      margin-bottom: 0.85rem;
+    }
+
+    /* PRICING SECTION */
+    .offer-box {
+      max-width: 480px !important;
+      margin: 0 auto;
+      border: 1.5px solid var(--border-color) !important;
+      background-color: var(--bg-primary);
+      padding: 40px !important;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06) !important;
+      border-radius: 12px !important;
+      text-align: center;
+    }
+
+    .offer-box h3 {
+      font-size: 1.35rem !important;
+      font-weight: 600 !important;
+      margin-bottom: 1.5rem !important;
+    }
+
+    .stack-list {
+      list-style-type: none;
+      margin: 1.5rem 0 2rem 0 !important;
+      border-top: 1.5px solid var(--border-color) !important;
+      border-bottom: 1.5px solid var(--border-color) !important;
+      padding: 2rem 0 !important;
+      text-align: left;
+    }
+
+    .stack-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 0.65rem 0 !important;
+      font-size: 0.95rem !important;
+      line-height: 1.8 !important;
+      border: none !important;
+    }
+
+    .stack-item-title {
+      font-weight: 500 !important;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+    }
+
+    .stack-item-title::before {
+      content: "✓" !important;
+      color: #16a34a !important;
+      font-weight: 900;
+      font-size: 1.1rem;
+      margin-right: 0.25rem;
+    }
+
+    .stack-item-bonus {
+      color: #b91c1c;
+      font-weight: 850;
+      font-size: 0.725rem;
+      background-color: #fef2f2;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    .stack-item-price {
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: line-through;
+      font-size: 0.9rem;
+    }
+
+    .stack-item.total-value {
+      font-size: 1rem !important;
+      color: var(--text-muted);
+      border-top: 1.5px dashed var(--border-color) !important;
+      border-bottom: none !important;
+      padding-top: 1.5rem !important;
+      padding-bottom: 0 !important;
+      margin-top: 1rem !important;
+    }
+
+    .pricing-heading-badge {
+      display: inline-block;
+      background-color: #fef2f2;
+      color: #b91c1c;
+      font-size: 0.725rem !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.08em !important;
+      padding: 0.35rem 0.85rem !important;
+      border-radius: 4px !important;
+      margin-bottom: 0.75rem !important;
+    }
+
+    .stack-item.final-price {
+      display: flex;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 36px !important;
+      font-weight: 700 !important;
+      color: var(--text-main);
+      padding-top: 1.5rem !important;
+      text-align: center;
+      border: none !important;
+    }
+
+    .stack-item.final-price .price-tag {
+      display: flex;
+      flex-direction: column;
+      align-items: center !important;
+    }
+
+    .stack-item.final-price .price-subtext {
+      font-size: 0.825rem !important;
+      font-weight: 700 !important;
+      color: #b91c1c;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 0.25rem;
+    }
+
+    /* RISK REVERSAL / GUARANTEE */
+    .guarantee-box {
+      max-width: 800px;
+      margin: 0 auto;
+      border: 1.5px solid var(--border-color);
+      background-color: var(--bg-primary);
+      padding: 3rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.03);
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .guarantee-badge {
+      width: 120px;
+      height: 120px;
+      border: 3px double var(--text-main);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-weight: 800;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 1rem;
+      transform: rotate(-5deg);
+    }
+
+    .guarantee-content h3 {
+      font-size: 1.5rem !important;
+      font-weight: 600 !important;
+      margin-bottom: 0.75rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: var(--bg-primary);
+      border-top: 1px solid var(--border-color);
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    /* SUCCESS MODAL / POPUP */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(255, 255, 255, 0.95);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
+
+    .modal-box {
+      max-width: 550px;
+      width: 100%;
+      background-color: var(--bg-primary);
+      border: 1.5px solid var(--text-main);
+      padding: 3.5rem 2.5rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .modal-box h3 {
+      font-size: 2rem !important;
+      font-weight: 600 !important;
+      margin-bottom: 1rem;
+    }
+
+    .btn-close-modal {
+      display: inline-block;
+      padding: 0.9rem 2rem;
+      background-color: var(--accent-color);
+      color: #ffffff;
+      font-family: var(--font-family);
+      font-weight: 700;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .btn-close-modal:hover {
+      background-color: #1f2937;
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 992px) {
+      .hero-grid {
+        padding-top: 3rem !important;
+        padding-bottom: 3.5rem !important;
+      }
+
+      .old-vs-new-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .timeline-container {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem !important;
+      }
+
+      .process-timeline {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 3rem 2rem !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .section-padding {
+        padding: 80px 0 !important;
+      }
+
+      .hero-title-main {
+        font-size: clamp(1.75rem, 7vw, 2.75rem) !important;
+        line-height: 1.25 !important;
+        margin-bottom: 1.25rem !important;
+      }
+
+      .hero-subtitle-sub {
+        font-size: clamp(1.15rem, 5vw, 1.4rem) !important;
+        line-height: 1.4 !important;
+        margin-bottom: 1.75rem !important;
+      }
+
+      .hero-trust-bar {
+        grid-template-columns: 1fr !important;
+        padding: 1.5rem 1.25rem !important;
+        margin-top: 2.5rem !important;
+        gap: 1.5rem !important;
+        box-shadow: 4px 4px 0px 0px rgba(0,0,0,1) !important;
+      }
+
+      .trust-stat {
+        border-right: none !important;
+        border-bottom: 2px solid var(--border-color) !important;
+        padding-right: 0 !important;
+        padding-bottom: 1.5rem !important;
+      }
+
+      .section-title {
+        font-size: 1.75rem !important;
+      }
+
+      .timeline-container {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+      }
+
+      .process-timeline {
+        grid-template-columns: 1fr !important;
+        gap: 3rem !important;
+      }
+
+      .equation-row {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .equation-label {
+        align-self: flex-start;
+      }
+
+      .guarantee-box {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.5rem;
+      }
+
+      .guarantee-badge {
+        margin: 0 auto;
+      }
+
+      .btn-submit, .btn-primary-cta, .btn-secondary-cta {
+        width: 100% !important;
+      }
+    }
+  </style>
+<script src="/_aistudio-iframe.js"></script><script src="https://cdn.jsdelivr.net/npm/html2canvas-pro"></script><style>.aistudio-hover-highlight { box-shadow: inset 0 0 0 0.5px white, inset 0 0 0 1.5px rgba(128,128,128,0.6) !important; }.aistudio-active-highlight { outline: 2px solid #87a9ff !important; outline-offset: -2px !important; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.3), inset 0 0 0 0.5px rgba(0,0,0,0.3) !important; border-radius: inherit !important; }.aistudio-generating-blur { filter: blur(5px) grayscale(100%) brightness(28%) !important; transition: filter 0.3s ease; }#aistudio-focus-mode-tag { position: absolute; display: none; align-items: center; gap: 4px; background: #87a9ff; border-radius: 12px; z-index: 10000; padding: 8px; color: #32302c; font-family: Inter, sans-serif; font-size: 14px; font-style: normal; font-weight: 500; line-height: 21px; pointer-events: none; }#aistudio-hover-mode-tag { position: absolute; display: none; align-items: center; gap: 4px; background: rgba(128,128,128,0.6); border-radius: 12px; z-index: 10000; padding: 8px; color: white; font-family: Inter, sans-serif; font-size: 14px; font-style: normal; font-weight: 500; line-height: 21px; pointer-events: none; }.aistudio-img-icon { display: none; vertical-align: middle; pointer-events: auto; cursor: pointer; }.aistudio-img-icon.visible { display: inline-flex; }#aistudio-focus-mode-tag .aistudio-img-icon { position: relative; width: 26px; height: 26px; background: #32302c; border-radius: 6px; margin: -4px -4px -4px 0; }#aistudio-focus-mode-tag .aistudio-img-icon::before { content: ""; position: absolute; top: 4px; left: 4px; width: 18px; height: 18px; background-color: white; -webkit-mask-image: url("https://fonts.gstatic.com/s/i/short-term/release/googlesymbols/edit_fix_auto/default/24px.svg"); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; mask-image: url("https://fonts.gstatic.com/s/i/short-term/release/googlesymbols/edit_fix_auto/default/24px.svg"); mask-size: contain; mask-repeat: no-repeat; }#aistudio-hover-mode-tag .aistudio-img-icon { position: relative; width: 18px; height: 18px; margin-left: 4px; }#aistudio-hover-mode-tag .aistudio-img-icon::before { content: ""; position: absolute; top: 0; left: 0; width: 18px; height: 18px; background-color: white; -webkit-mask-image: url("https://fonts.gstatic.com/s/i/short-term/release/googlesymbols/edit_fix_auto/default/24px.svg"); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; mask-image: url("https://fonts.gstatic.com/s/i/short-term/release/googlesymbols/edit_fix_auto/default/24px.svg"); mask-size: contain; mask-repeat: no-repeat; }#aistudio-focus-mode-tag .aistudio-img-icon:hover, #aistudio-hover-mode-tag .aistudio-img-icon:hover { background: #424242 !important; }#aistudio-focus-mode-tag .aistudio-img-icon:active, #aistudio-hover-mode-tag .aistudio-img-icon:active { background: #393f51 !important; }</style></head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container header-flex">
+      <div class="logo-group">
+        <a href="#" class="logo" id="header-logo">EDU PARTNERS</a>
+        <div class="company-tagline">Raisova 889/5, Ostrava 709 00</div>
+      </div>
+      <div class="header-contact">
+        <button id="download-html-btn" class="download-html-btn" title="Stáhnout tento web jako jeden kompletní HTML soubor">
+          <svg style="width:16px;height:16px;stroke:currentColor;" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Stáhnout HTML kód
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+    <!-- HERO SECTION -->
+    <section class="container" id="hero-section">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="badge" id="hero-badge">Tvoříme AI-First digitální identitu</span>
+          <h1 class="hero-title-main" id="hero-headline"><span style="background-color: #fef08a; padding: 0.15em 0.55em; border-radius: 8px; display: inline; box-decoration-break: clone; -webkit-box-decoration-break: clone; line-height: 1.4; word-break: break-word;">60 % lidí se rozhoduje podle AI.</span></h1>
+          <h2 class="hero-subtitle-sub" id="hero-subheadline-h2">Postavíme vám <span style="color: #1a73e8; text-decoration: underline; text-decoration-color: #E5E7EB;">AI-first osobní web</span>, který z vás udělá autoritu na trhu a donutí algoritmy doporučovat výhradně vás.</h2>
+          <p id="hero-subheadline">
+            Pomáháme lidem a firmám dostat se do odpovědí ChatGPT, Claude, Perplexity a Google SGE. Tvoříme architekturu autority pro AI. Pokud tě AI nenajde, neexistuješ.
+          </p>
+          <a href="#final-capture" class="btn-primary-cta" style="margin-top: 1.5rem; display: inline-block; width: auto !important; max-width: fit-content;">Chci AI-first digitální identitu</a>
+        </div>
+      </div>
+
+      <!-- HERO TRUST CITATION SECTION (BREAKOUT PANEL) -->
+      <div class="hero-trust-bar">
+        <div class="trust-stat">
+          <span style="font-size: 4rem; font-weight: 950; line-height: 1; color: var(--accent-color); letter-spacing: -0.04em; margin-bottom: 0.5rem; display: block;">60%+</span>
+          <span style="font-size: 0.775rem; font-weight: 900; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.08em; line-height: 1.3; display: block;">Míra rozhodování &amp;<br>důvěra v GenAI výsledky</span>
+        </div>
+        <div class="trust-citation" style="font-size: 1.05rem; color: var(--text-main); line-height: 1.6;">
+          <strong style="font-weight: 850; text-transform: uppercase; letter-spacing: 0.075em; font-size: 0.8rem; display: block; margin-bottom: 0.75rem; color: #b91c1c;">❖ FASCINUJÍCÍ DATA: NOVÝ NEZVRATNÝ TREND V B2B I B2C</strong>
+          <span style="font-weight: 800; font-size: 1.25rem; display: block; margin-bottom: 0.5rem; color: var(--text-main); line-height: 1.25;">Nákupčí a zákazníci dnes přenášejí svou absolutní důvěru přímo na výsledky generativní AI.</span> 
+          Spotřebitelé a firemní rozhodovatelé čím dál častěji vynechávají klasické vyhledávače a spoléhají na doporučení od ChatGPT, Claude či Gemini. Pokud se vás nebo vašich obchodníků zákazník zeptá umělé inteligence a ta mlčí, jste v nevýhodě. Vaše digitální stopa musí být technologicky srozumitelná pro LLM modely.
+          <span style="font-size: 0.8rem; display: block; margin-top: 1.25rem; color: var(--text-muted); font-family: monospace; border-top: 1px solid var(--border-color); padding-top: 0.75rem; word-break: break-all; overflow-wrap: break-word;">
+            Zdroj vědecké studie: <strong>BCG Global Consumer Radar, prosinec 2025</strong> — <a href="https://www.bcg.com/publications/2026/consumers-trust-ai-to-buy-better-brands-must-adapt" target="_blank" rel="noopener noreferrer" style="color: var(--text-muted); text-decoration: underline; word-break: break-all;">bcg.com/publications/2026/consumers-trust-ai-to-buy-better-brands-must-adapt</a>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE HARD TRUTH SECTION -->
+    <section class="section-padding section-bg" id="problem-section">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="badge-outline">KRUTÁ PRAVDA BYZNYSU:</span>
+          <h2 class="section-title" id="problem-headline">Lidé už nehledají na Googlu. Nechávají si firmy i experty prověřovat přes AI.</h2>
+          <p>Standardní vyhledávání umírá. Když klient hledá řešení, AI mu doporučí jen ty, o kterých prokazatelně ví všechno.</p>
+        </div>
+
+        <div class="old-vs-new-grid">
+          <!-- OLD WAY -->
+          <div class="truth-card old-way" id="old-world-card">
+            <div class="card-heading" style="gap: 1rem;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background-color: #fee2e2; color: #ef4444; border-radius: 50%; font-size: 16px; font-weight: 800; flex-shrink: 0;">✕</span> Starý svět: Umírající SEO
+            </div>
+            <ul class="truth-list">
+              <li>Pomalé, těžké firemní weby, které AI boti kvůli crawl budgetu rovnou přeskočí.</li>
+              <li>Slepá snaha o organické klíčové slovo, které už stejně nikdo neproklikává.</li>
+              <li>Když se klient (nebo AI) zeptá: „Kdo je [Vaše Jméno / Vaše Firma] a proč s nimi pracovat?“, AI odpoví: „O tomto subjektu nemám dostatek důvěryhodných informací.“</li>
+              <li>Šance na zakázku okamžitě padá na nulu. Pro moderní trh jednoduše neexistujete.</li>
+            </ul>
+          </div>
+
+          <!-- NEW WAY -->
+          <div class="truth-card new-way" id="new-world-card">
+            <div class="card-heading" style="gap: 1rem;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background-color: #dcfce7; color: #22c55e; border-radius: 50%; font-size: 16px; font-weight: 800; flex-shrink: 0;">✓</span> Nový svět: Vybudovaná Autorita
+            </div>
+            <ul class="truth-list">
+              <li>Mikro-web postavený s absolutně čistým sémantickým kódem přizpůsobeným pro scraping roboty.</li>
+              <li>Strukturovaná data, která okamžitě nakrmí Claude, Gemini i GPT modely fakty.</li>
+              <li>AI bot najde vaše případové studie a reference během 0.01 sekundy.</li>
+              <li>Klient dostane od ChatGPT detailní, strukturovanou a neprůstřelnou odpověď, proč s vámi pracovat.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW WE DO IT Section -->
+    <section class="section-padding" id="how-it-works-section">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="badge-outline">Technická Transparentnost</span>
+          <h2 class="section-title">Technická architektura autority. Jak krmíme AI modely data?</h2>
+          <p>Stavíme digitální infrastrukturu, která mluví přirozeným jazykem LLM modelů.</p>
+        </div>
+
+        <div class="timeline-container">
+          <!-- Step 1 -->
+          <div class="timeline-step">
+            <div class="timeline-step-header">
+              <div class="timeline-number">01</div>
+              <div class="timeline-icon">
+                <!-- Speedometer Icon -->
+                <svg class="w-10 h-10" style="width:40px;height:40px;color:var(--text-main);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 12V6"></path><circle cx="12" cy="12" r="1"></circle></svg>
+              </div>
+            </div>
+            <h3 class="timeline-step-title">Web Vitals &amp; Rychlost</h3>
+            <p class="timeline-step-desc">Stránka se načte do 0.1 vteřiny. AI boti mají omezené limity na procházení (crawl budget). Náš čistý kód zaručuje, že boti bleskově sežerou veškerá data bez plýtvání systémovými zdroji.</p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="timeline-step">
+            <div class="timeline-step-header">
+              <div class="timeline-number">02</div>
+              <div class="timeline-icon">
+                <!-- Layout Grid Icon -->
+                <svg class="w-10 h-10" style="width:40px;height:40px;color:var(--text-main);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+              </div>
+            </div>
+            <h3 class="timeline-step-title">Čistá sémantická struktura</h3>
+            <p class="timeline-step-desc">Zbavili jsme se zbytečného balastu a JS frameworků. Flawless HTML struktura přesně mapuje vaši expertízu, sémantické tagy ulehčují LLM scraperům extrakci informací bez halucinací.</p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="timeline-step">
+            <div class="timeline-step-header">
+              <div class="timeline-number">03</div>
+              <div class="timeline-icon">
+                <!-- ID Card / Passport Identity Icon -->
+                <svg class="w-10 h-10" style="width:40px;height:40px;color:var(--text-main);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><line x1="7" y1="8" x2="17" y2="8"></line><line x1="7" y1="12" x2="11" y2="12"></line><circle cx="15" cy="14" r="2"></circle></svg>
+              </div>
+            </div>
+            <h3 class="timeline-step-title">AI pasy: llms.txt &amp; Schema</h3>
+            <p class="timeline-step-desc">Implementujeme nejnovější globální standardy jako llms.txt, schema.org mikrodáta a roboty upravené specificky pro AI crawlery. Tím dáváme AI modelům oficiální pas k vašemu byznysu.</p>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="timeline-step">
+            <div class="timeline-step-header">
+              <div class="timeline-number">04</div>
+              <div class="timeline-icon">
+                <!-- Share / Network Node Icon -->
+                <svg class="w-10 h-10" style="width:40px;height:40px;color:var(--text-main);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+              </div>
+            </div>
+            <h3 class="timeline-step-title">Entitní propojování autority</h3>
+            <p class="timeline-step-desc">Propojíme vaši osobní doménu se všemi důvěryhodnými entitami na síti. Tím zpevníme zápis ve znalostních databázích (Knowledge Graphs) a AI začne brát vaše jméno jako nezpochybnitelný fakt.</p>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="timeline-step">
+            <div class="timeline-step-header">
+              <div class="timeline-number">05</div>
+              <div class="timeline-icon">
+                <!-- Growth Chart / Trending Up Icon -->
+                <svg class="w-10 h-10" style="width:40px;height:40px;color:var(--text-main);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+              </div>
+            </div>
+            <h3 class="timeline-step-title">AI Positioning &amp; Strážce</h3>
+            <p class="timeline-step-desc">Pravidelný reporting a systematická optimalizace tvoří trvalou paměmotou odezvu u AI modelů. AI vás vybere jako první doporučovanou autoritu v oboru a bude vás doporučovat trvale.</p>
+          </div>
+        </div>
+
+        <div class="tech-note">
+          „Kdo dřív přijde, toho AI model zaregistruje jako první autoritu a bude ho doporučovat trvale. Není to hned, je to investice do digitálního vlastnictví.“
+        </div>
+      </div>
+    </section>
+
+    <!-- THE TRANSFORMATION SECTION (Input vs Output) -->
+    <section class="section-padding section-bg" id="transformation-section">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="badge-outline">Matematika Důvěry</span>
+          <h2 class="section-title">Rovnice AI dohledatelnosti: Jak zvýšíte šanci, že vás klient najde?</h2>
+          <p>Přirozený tok informací v moderní B2B akvizici.</p>
+        </div>
+
+        <div class="equations-wrap">
+          <!-- VSTUP -->
+          <div class="equation-row">
+            <div class="equation-label label-vstup">VSTUP (Starý svět)</div>
+            <div class="equation-steps">
+              <span class="eq-step">Obchodník osloví klienta</span>
+              <span class="eq-arrow">➔</span>
+              <span class="eq-step">Klient se zeptá ChatGPT na jméno obchodníka</span>
+              <span class="eq-arrow">➔</span>
+              <span class="eq-step">AI prohledává těžký firemní kód a nenajde nic</span>
+              <span class="eq-arrow">➔</span>
+              <span class="eq-step" style="border-color: #f87171; color: #991b1b;">Výsledek: AI halucinuje nebo mlčí</span>
+              <span class="eq-arrow">➔</span>
+              <span class="eq-step" style="background-color: #fef2f2; font-weight: bold; color: #b91c1c;">Pravděpodobnost obchodu padá na minimum</span>
+            </div>
+          </div>
+
+          <!-- KATALYZÁTOR -->
+          <div class="equation-row" style="border-color: var(--accent-color); border-width: 2px;">
+            <div class="equation-label label-katalyzator">KATALYZÁTOR</div>
+            <div class="equation-steps">
+              <span class="eq-step eq-step-accent">Nasazení mikro-webu na vlastní doméně</span>
+              <span class="eq-arrow">➔</span>
+              <span class="eq-step">Čisté HTML + llms.txt pas naservírují AI botům pravdu o vaší expertíze za 0.01 vteřiny.</span>
+            </div>
+          </div>
+
+          <!-- VÝSTUP -->
+          <div class="equation-row">
+            <div class="equation-label label-vystup">VÝSTUP (Nový svět)</div>
+            <div class="equation-steps">
+              <span class="eq-step">Obchodník osloví klienta</span>
+              <span class="eq-arrow">➔</span>
+              <span class="eq-step">Klient se zeptá ChatGPT</span>
+              <span class="eq-arrow">➔</span>
+              <span class="eq-step">AI okamžitě odpovídá s přesnými argumenty a cituje jméno obchodníka jako autoritu</span>
+              <span class="eq-arrow">➔</span>
+              <span class="eq-step" style="background-color: #f0fdf4; border-color: #4ade80; color: #166534; font-weight: bold;">Extrémně vysoká pravděpodobnost okamžité důvěry</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW WE COOPERATE SECTION -->
+    <section class="section-padding" id="cooperation-process-section" style="border-bottom: 1px solid var(--border-color);">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="badge-outline">Jasná cesta k výsledku</span>
+          <h2 class="section-title">Jak funguje naše spolupráce?</h2>
+          <p>Přesný, efektivní a bleskově rychlý proces bez zbytečných schůzek a zdržování.</p>
+        </div>
+
+        <div class="process-timeline">
+          <!-- Step 1 -->
+          <div class="process-step">
+            <div class="process-step-num">1</div>
+            <h3>Projevení zájmu</h3>
+            <p>Vyplníte krátký a rychlý formulář na této stránce. Tím nám dáte signál, že chcete posunout důvěru ve váš byznys na další úroveň.</p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="process-step">
+            <div class="process-step-num">2</div>
+            <h3>Telefonát 20 minut</h3>
+            <p>Zavolám vám osobně. Během 20 minut zhodnotíme současný stav, podíváme se na vaši aktuální viditelnost pro AI a ujasníme si technické cíle.</p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="process-step">
+            <div class="process-step-num">3</div>
+            <h3>Vystavení faktury</h3>
+            <p>Po odsouhlasení zadání vám vystavíme zálohovou fakturu. Bereme to jako formální stvrzení a okamžitě startujeme vývojové práce.</p>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="process-step">
+            <div class="process-step-num">4</div>
+            <h3>Tvorba 10 dní</h3>
+            <p>Do 10 dnů máme vše naprogramované. V průběhu je samozřejmě prostor pro společné doladění detailů, textů a zpětné vazby.</p>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="process-step">
+            <div class="process-step-num">5</div>
+            <h3>Publikování</h3>
+            <p>Mikro-web spustíme živě na vaší doméně a odešleme okamžité signály LLM botům na indexaci. Od této chvíle vlastníte kus digitální půdy.</p>
+          </div>
+
+          <!-- Step 6 -->
+          <div class="process-step">
+            <div class="process-step-num">6</div>
+            <h3>Měsíční reporting</h3>
+            <p>Možnost měsíčního reportingu dohledatelnosti na 3 vybraná klíčová slova v AI vyhledávačích. Máte perfektní přehled, co o vás modely tvrdí.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE $100M OFFER STACK -->
+    <section class="section-padding" id="offer-section">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="badge">NABÍDKA, KTERÁ SE NEODMÍTÁ</span>
+          <h2 class="section-title">Neférová výhoda pro vaše obchodníky</h2>
+          <p>Složili jsme neodolatelnou nabídku s extrémním přebitím hodnoty nad cenou.</p>
+        </div>
+
+        <div class="offer-box">
+          <h3 style="margin-bottom: 0.5rem !important;">Balíček AI-First digitální identita</h3>
+          <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 1.5rem !important; font-weight: 600;">+ bonus pro váš růst</p>
+          
+          <ul class="stack-list">
+            <li class="stack-item">
+              <span class="stack-item-title">Osobní HTML mikro-web na vlastní doméně</span>
+              <span class="stack-item-price">15 000 Kč</span>
+            </li>
+            <li class="stack-item">
+              <span class="stack-item-title">AI Indexing Pack (llms.txt + Schema.org + sitemapy)</span>
+              <span class="stack-item-price">5 000 Kč</span>
+            </li>
+            <li class="stack-item">
+              <span class="stack-item-title">
+                BONUS: Roční přístup do e-learningu edu-partners.cz 
+                <span class="stack-item-bonus">ZDARMA</span>
+              </span>
+              <span class="stack-item-price">5 000 Kč</span>
+            </li>
+            
+            <li class="stack-item total-value">
+              <span>Celková reálná hodnota:</span>
+              <span style="font-weight: 700; text-decoration: line-through;">25 000 Kč</span>
+            </li>
+          </ul>
+
+          <span class="pricing-heading-badge">Speciální cena</span>
+          
+          <div style="font-size: 36px; font-weight: 700; color: var(--text-main); line-height: 1.1; margin-bottom: 0.25rem;">4 990 Kč</div>
+          <p style="font-size: 0.825rem !important; font-weight: 700; color: #b91c1c; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2rem !important; text-align: center;">Jednorázová investice</p>
+
+          <a href="#final-capture" class="btn-primary-cta" style="display: block; text-decoration: none; text-align: center;">Chci AI-first digitální identitu</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- RISK REVERSAL -->
+    <section class="section-padding section-bg" id="guarantee-section">
+      <div class="container">
+        <div class="guarantee-box">
+          <div class="guarantee-badge" style="font-size: 0.7rem; line-height: 1.3;">
+            100%<br>TECHNICKÁ<br>GARANCE
+          </div>
+          <div class="guarantee-content">
+            <h3>Férová garance. 100% technická připravenost pro AI roboty.</h3>
+            <p>
+              Indexace modelů a aktualizace znalostních bází AI vyhledávačů jsou komplexní a dlouhodobé procesy (některé modely aktualizují svá offline data v delších cyklech). Proto neslibujeme nesmyslné zázraky do druhého dne. Garantujeme vám ale <strong>stoprocentní technickou bezchybnost</strong>: váš mikro-web dodáme v perfektním sémantickém stavu s bezchybnou validací, sitemapy, Schema.org mikrodaty a oficiálním llms.txt pasem přesně podle nejnovějších mezinárodních standardů. Pokud by se v našem kódu objevil jakýkoliv technický limit bránící průchodnosti AI robotů, okamžitě jej zdarma odstraníme, nebo vám vrátíme peníze.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL LEAD CAPTURE FORM -->
+    <section class="section-padding" id="final-capture">
+      <div class="container bottom-form-wrap">
+        <div class="section-title-wrap" style="margin-bottom: 2.5rem;">
+          <span class="badge">Nenechávejte to náhodě</span>
+          <h2 class="section-title">Zajistěte si místo v odpovědích AI ještě dnes</h2>
+          <p>Vyplňte krátký formulář. Osobně se vám ozvu a navrhnu řešení na míru pro vás a vaše obchodní zástupce.</p>
+        </div>
+
+        <div class="cta-card">
+          <h3 style="margin-bottom: 0.5rem !important;">Chci Balíček AI-First digitální identity</h3>
+          <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 1.5rem !important; font-weight: 600; text-align: center;">+ bonus pro váš růst</p>
+          
+          <form class="lead-form" data-form-id="final-form" action="submit.php" method="POST">
+            <div class="form-group">
+              <label for="final-name">Jméno a příjmení</label>
+              <input type="text" id="final-name" name="name" class="form-control" required="" placeholder="Jan Novák">
+            </div>
+            
+            <div class="form-group">
+              <label for="final-phone">Telefonní číslo</label>
+              <input type="tel" id="final-phone" name="phone" class="form-control" required="" placeholder="+420 777 777 777">
+            </div>
+            
+            <div class="form-group">
+              <label for="final-email">E-mail</label>
+              <input type="email" id="final-email" name="email" class="form-control" required="" placeholder="jan.novak@firma.cz">
+            </div>
+
+            <!-- ORDER BUMP OPTIONAL ADD-ON -->
+            <div class="order-bump">
+              <input type="checkbox" id="final-bump" name="order_bump" value="yes">
+              <label for="final-bump" class="order-bump-label">
+                <span class="order-bump-tag">DOPORUČENÝ DOPLNĚK ➔</span>
+                Přidat <strong>AI Strážce Pozic</strong> za 1 000 Kč / rok (Měsíční automatický reporting dohledatelnosti na 3 klíčové fráze).
+              </label>
+            </div>
+
+            <button type="submit" class="btn-submit">Chci AI-first digitální identitu</button>
+            <p class="form-disclaimer">Zavolám vám osobně a probereme řešení pro váš byznys.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
+      <div class="footer-contacts" style="display: flex; flex-direction: column; align-items: center; gap: 0.75rem;">
+        <span class="contact-person" style="font-size: 1.1rem; color: var(--text-main); font-weight: 700;">Kontaktní osoba: Michal Míček</span>
+        <span style="color: var(--text-muted); font-size: 0.95rem;">E-mail: <a href="mailto:michal.micek@edu-partners.cz" style="color: var(--text-main); font-weight: 600; text-decoration: none;">michal.micek@edu-partners.cz</a></span>
+        
+        <a href="https://www.linkedin.com/in/michalmicek/" target="_blank" rel="noopener noreferrer" class="linkedin-link" id="linkedin-link" style="margin-top: 0.5rem;">
+          <svg style="width:16px;height:16px;fill:currentColor;" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+          LinkedIn Profil
+        </a>
+      </div>
+      
+      <div style="border-top: 1px solid var(--border-color); width: 100%; max-width: 400px; padding-top: 1.5rem; margin-top: 0.5rem; text-align: center;">
+        <p style="margin-bottom: 0.5rem; font-weight: 700; color: var(--text-main);">EDU PARTNERS</p>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">© 2026 EDU PARTNERS. Všechna práva vyhrazena. Tvořeno s respektem k lidem i LLM crawlerům.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SUCCESS MODAL POPUP -->
+  <div class="modal-backdrop" id="success-modal">
+    <div class="modal-box">
+      <h3>Děkuji! Formular byl odeslán.</h3>
+      <p id="modal-text">Vaše poptávka na <strong>AI-first digitální identitu</strong> byla úspěšně zaznamenána. Ozvu se vám telefonicky hned, jakmile to bude možné, abychom probrali nejlepší řešení pro váš byznys.</p>
+      <button class="btn-close-modal" id="close-modal-btn">Zavřít</button>
+    </div>
+  </div>
+
+  <!-- INTERACTION LOGIC (PURE STANDALONE JS - NO EXTERNAL DEPENDENCIES) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const forms = document.querySelectorAll('.lead-form');
+      const successModal = document.getElementById('success-modal');
+      const modalText = document.getElementById('modal-text');
+      const closeModalBtn = document.getElementById('close-modal-btn');
+
+      forms.forEach(form => {
+        form.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          
+          // Gather form-field values
+          const name = form.querySelector('input[name="name"]').value;
+          const phone = form.querySelector('input[name="phone"]').value;
+          const email = form.querySelector('input[name="email"]').value;
+          const isBumpChecked = form.querySelector('input[name="order_bump"]').checked;
+          
+          // Visual state: loading
+          const submitBtn = form.querySelector('button[type="submit"]');
+          const originalBtnText = submitBtn.innerText;
+          submitBtn.disabled = true;
+          submitBtn.innerText = 'Odesílám...';
+
+          let phpConnected = false;
+          let apiErrorMsg = '';
+
+          try {
+            // Attempt AJAX request to submit.php
+            const formData = new FormData(form);
+            const response = await fetch('submit.php', {
+              method: 'POST',
+              body: formData
+            });
+            
+            // Try parsing JSON response from server
+            if (response.ok) {
+              const result = await response.json();
+              if (result && result.status === 'success') {
+                phpConnected = true;
+              } else if (result && result.message) {
+                apiErrorMsg = result.message;
+              }
+            }
+          } catch (err) {
+            console.log('Rozpoznán offline náhled: submit.php ještě nebyl nahrán nebo nepoužíváte PHP server. Spouštím visualizační simulator.', err);
+          }
+
+          // Restore submit button state
+          submitBtn.disabled = false;
+          submitBtn.innerText = originalBtnText;
+
+          if (apiErrorMsg) {
+            alert('Nastala chyba při zpracování: ' + apiErrorMsg);
+            return;
+          }
+
+          // Build response text for success modal
+          let confirmationText = `Ahoj <strong>${name}</strong>,<br><br>Vaše poptávka o <strong>AI-first digitální identitu</strong> byla úspěšně zaznamenána.`;
+          
+          if (isBumpChecked) {
+            confirmationText += `<br>Přidali jsme doplňkovou službu <strong>AI Strážce Pozic</strong> pro měsíční reporting.`;
+          }
+          
+          if (phpConnected) {
+            confirmationText += `<br><br><span style="padding: 4px 8px; background: #dcfce7; color: #166534; border-radius: 4px; font-size: 0.825rem; font-weight: 700; display: inline-block;">✓ Data byla uložena a e-mail odeslán přes submit.php!</span>`;
+          } else {
+            confirmationText += `<br><br><span style="padding: 4px 8px; background: #fef08a; color: #854d0e; border-radius: 4px; font-size: 0.825rem; font-weight: 700; display: inline-block;">ℹ️ Offline náhled (simulace úspěšného odeslání)</span><br><small style="display:block; margin-top:0.4rem; color:var(--text-muted);">Pokud k tomuto staženému HTML souboru do stejné složky na svém serveru nahrajete přiložený <code>submit.php</code>, data budou reálně ukládána a odesílána na Váš e-mail.</small>`;
+          }
+          
+          confirmationText += `<br><br>Michal Miček se s Vámi spojí na telefonním čísle <strong>${phone}</strong> nebo e-mailu <strong>${email}</strong> a proberete řešení na míru.`;
+          
+          modalText.innerHTML = confirmationText;
+          successModal.style.display = 'flex';
+          
+          // Clear form fields
+          form.reset();
+        });
+      });
+
+      closeModalBtn.addEventListener('click', function() {
+        successModal.style.display = 'none';
+      });
+
+      // Close modal on escape key
+      window.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && successModal.style.display === 'flex') {
+          successModal.style.display = 'none';
+        }
+      });
+
+      // NATIVE HTML ONE-FILE DOWNLOAD EXPORTER
+      const downloadBtn = document.getElementById('download-html-btn');
+      if (downloadBtn) {
+        downloadBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Get deep copy of current page outer content
+          const htmlContent = '<!DOCTYPE html>\n<html lang="cs">\n' + document.documentElement.innerHTML + '\n</html>';
+          
+          // Create instant binary Blob for browser triggering file generation
+          const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'index.html';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        });
+      }
+    });
+  </script>
+
+
+
+</body>
+</html>
